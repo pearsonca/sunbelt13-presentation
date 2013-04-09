@@ -4,7 +4,20 @@
 
 \documentclass{seminar}
 \usepackage{amsmath}
-%\newcommand{\mytoday}{\day \month \year}
+
+\newcommand{\spres}{\begin{slide}}
+\newcommand{\nextslide}{\end{slide}
+\begin{slide}}
+\newcommand{\epres}{\end{slide}}
+
+\setlength{\pdfhorigin}{1truein}
+\setlength{\pdfvorigin}{1truein}
+\makeatletter
+\setlength{\pdfpagewidth}{\strip@pt\paperheight truept}
+\setlength{\pdfpageheight}{\strip@pt\paperwidth truept}
+\makeatother
+
+\slideframe{none}
 
 \begin{document}
 
