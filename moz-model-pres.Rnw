@@ -1,10 +1,10 @@
 \documentclass{beamer}
 \usepackage{amsmath}
 
-% \newcommand{\spres}{\begin{slide}}
-% \newcommand{\nextslide}{\end{slide}
-% \begin{slide}}
-% \newcommand{\epres}{\end{slide}}
+% \newcommand{\spres}{\frame{}
+% \newcommand{\nextslide}{}
+% \frame{}
+% \newcommand{\epres}{}}
 % 
 % \setlength{\pdfhorigin}{1truein}
 % \setlength{\pdfvorigin}{1truein}
@@ -14,6 +14,8 @@
 % \makeatother
 % 
 % \slideframe{none}
+
+\usetheme{boxes}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
@@ -26,61 +28,60 @@ Emerging Pathogens Institute, University of Florida
 
 \frame{
 \frametitle{Emphasis: Simple}
-comparison of continuous,
-
-spatially homogenous models
+comparison of continuous, spatially homogenous models
 
 Why? 
 
 understanding of infection trends can inform interventions, health system preparations, {\em etc}.
 }
-% 
-% \begin{slide}
-% Common Mosquito Model % in disease contexts, not used absolutely everywhere
-% 
-% TODO sine
-% \end{slide}
-% 
-% \begin{slide}
-% ...{\em vs.} Common Mosquito Abundance
-% 
-% TODO overlay mosquito pops with sine, match peaks
-% \end{slide}
-% 
-% \begin{slide}
-% So: low hanging fruit
-% 
-% preview: no sophisticated analysis to pick said fruit \\
-% but these basic analyses provide fertile ground for much more quantitative detail % note about the value of this approach in general to science engineering
-% \end{slide}
-% 
-% \begin{slide}
-% \title{Engineering \&\ Maths Refresher, I}
-% \begin{enumerate}
-% \item useful to write models in terms of measurable parameters,
-% \item measurable parameters are not scale-free,
-% \item mathematics is more useful when scale free, therefore
-% \item dimensional analysis is awesome
-% \end{enumerate}
-% \end{slide}
-% 
-% \begin{slide}
+
+\frame{
+\frametitle{Common Mosquito Model} % in disease contexts, not used absolutely everywhere
+
+TODO sine
+}
+
+\frame{
+\frametitle{...{\em vs.} Common Mosquito Abundance}
+
+TODO overlay mosquito pops with sine, match peaks
+}
+
+\frame{
+\frametitle{So, Low Hanging Fruit}
+
+preview: no sophisticated analysis to pick said fruit \\
+but these basic analyses provide fertile ground for much more quantitative detail
+% note about the value of this approach in general to science engineering
+}
+
+\frame{
+\title{Engineering \&\ Maths Refresher, I}
+\begin{enumerate}
+\item useful to write models in terms of measurable parameters,
+\item measurable parameters are not scale-free,
+\item mathematics is more useful when scale free, therefore
+\item dimensional analysis is awesome
+\end{enumerate}
+}
+
+% \frame{
 % where $M(t)$ is mosquito population w.r.t time
 % \begin{align*}
 % \dot{M(t)} = E(t) - \lambda M(t)
 % \end{align*}
 % defined on $t\in(-T/2,T/2)$
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % common usage is $M(t)\propto$ simple trigonometric
 % 
 % What salient observed features does that miss?
 % 
 % aside: why replace given $M(t)$ with given $\dot{M(t)}$?
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % Salient features:
 % \begin{itemize}
 % \item short time with appreciable population
@@ -90,25 +91,25 @@ understanding of infection trends can inform interventions, health system prepar
 % \end{itemize}
 % 
 % Need a spike-like $E(t)$ to replicate these.  Candidates?
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % Spike-like could be more formally $\delta$-function like.
 % 
 % So: use $\delta$-function approximations.
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % TODO list approximate delta functions.
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % What should we use for the shape parameters?
 % 
 % clue: want oranges-to-oranges comparisons between the options
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % I chose to make mosquito total births equivalent
 % 
 % TODO $M_p$ equation
@@ -116,16 +117,16 @@ understanding of infection trends can inform interventions, health system prepar
 % and then to apply a subjective ``constraint'' on $\Delta t$
 % 
 % TODO delta t stuff
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % TODO list approximate delta functions with params in place
-% \end{slide}
+% }
 % 
-% \begin{slide}
+% \frame{
 % Now everything is on the same scale, but rewind: don't have any of the convenience of having the same scale.
 % 
 % So: dimensional analysis.  What parameters should be eliminated?
-% \end{slide}
+% }
 
 \end{document}
