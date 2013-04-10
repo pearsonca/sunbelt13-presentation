@@ -1,134 +1,132 @@
-%%This is a template for creating a slide presentation
-%%using the seminar package (be sure to install the 
-%%seminar package to build this.)
-
-\documentclass{seminar}
+\documentclass{beamer}
 \usepackage{amsmath}
 
-\newcommand{\spres}{\begin{slide}}
-\newcommand{\nextslide}{\end{slide}
-\begin{slide}}
-\newcommand{\epres}{\end{slide}}
+% \newcommand{\spres}{\begin{slide}}
+% \newcommand{\nextslide}{\end{slide}
+% \begin{slide}}
+% \newcommand{\epres}{\end{slide}}
+% 
+% \setlength{\pdfhorigin}{1truein}
+% \setlength{\pdfvorigin}{1truein}
+% \makeatletter
+% \setlength{\pdfpagewidth}{\strip@pt\paperheight truept}
+% \setlength{\pdfpageheight}{\strip@pt\paperwidth truept}
+% \makeatother
+% 
+% \slideframe{none}
 
-\setlength{\pdfhorigin}{1truein}
-\setlength{\pdfvorigin}{1truein}
-\makeatletter
-\setlength{\pdfpagewidth}{\strip@pt\paperheight truept}
-\setlength{\pdfpageheight}{\strip@pt\paperwidth truept}
-\makeatother
-
-\slideframe{none}
-
+\usepackage{Sweave}
 \begin{document}
+\input{moz-model-pres-concordance}
+\title{Simple Mosquito Modeling}
+\author[Pearson]{Carl~A.~B.~Pearson}
+\institute[University of Florida]{
+Emerging Pathogens Institute, University of Florida
+}
+\frame{\titlepage}
 
-\begin{slide}
-\title{Hello World}
-Carl A. B. Pearson \\
-Postdoctoral Researcher \\
-Emerging Pathogens Institute, University of Florida \\
-last compiled: \today
-\end{slide}
+\frame{
+\frametitle{Emphasis: Simple}
+comparison of continuous,
 
-\begin{slide}
-Topic: Seasonal Vector Populations \\
-comparison of continuous, spatially homogenous models % deliberately simple basis
+spatially homogenous models
 
 Why? 
 
 understanding of infection trends can inform interventions, health system preparations, {\em etc}.
-\end{slide}
-
-\begin{slide}
-Common Mosquito Model % in disease contexts, not used absolutely everywhere
-
-TODO sine
-\end{slide}
-
-\begin{slide}
-...{\em vs.} Common Mosquito Abundance
-
-TODO overlay mosquito pops with sine, match peaks
-\end{slide}
-
-\begin{slide}
-So: low hanging fruit
-
-preview: no sophisticated analysis to pick said fruit \\
-but these basic analyses provide fertile ground for much more quantitative detail % note about the value of this approach in general to science engineering
-\end{slide}
-
-\begin{slide}
-\title{Engineering \&\ Maths Refresher, I}
-\begin{enumerate}
-\item useful to write models in terms of measurable parameters,
-\item measurable parameters are not scale-free,
-\item mathematics is more useful when scale free, therefore
-\item dimensional analysis is awesome
-\end{enumerate}
-\end{slide}
-
-\begin{slide}
-where $M(t)$ is mosquito population w.r.t time
-\begin{align*}
-\dot{M(t)} = E(t) - \lambda M(t)
-\end{align*}
-defined on $t\in(-T/2,T/2)$
-\end{slide}
-
-\begin{slide}
-common usage is $M(t)\propto$ simple trigonometric
-
-What salient observed features does that miss?
-
-aside: why replace given $M(t)$ with given $\dot{M(t)}$?
-\end{slide}
-
-\begin{slide}
-Salient features:
-\begin{itemize}
-\item short time with appreciable population
-% note: measure of pop. may be totally unreliable; however, trappable pop might good surrogate for active pop.
-\item even shorter time for population rise and fall
-\item low correlation with early and peak populations % accurate? provide comparison plots?
-\end{itemize}
-
-Need a spike-like $E(t)$ to replicate these.  Candidates?
-\end{slide}
-
-\begin{slide}
-Spike-like could be more formally $\delta$-function like.
-
-So: use $\delta$-function approximations.
-\end{slide}
-
-\begin{slide}
-TODO list approximate delta functions.
-\end{slide}
-
-\begin{slide}
-What should we use for the shape parameters?
-
-clue: want oranges-to-oranges comparisons between the options
-\end{slide}
-
-\begin{slide}
-I chose to make mosquito total births equivalent
-
-TODO $M_p$ equation
-
-and then to apply a subjective ``constraint'' on $\Delta t$
-
-TODO delta t stuff
-\end{slide}
-
-\begin{slide}
-TODO list approximate delta functions with params in place
-\end{slide}
-
-\begin{slide}
-Now everything is on the same scale, but rewind: don't have any of the convenience of having the same scale.
-
-So: dimensional analysis.  What parameters should be eliminated?
-\end{slide}
+}
+% 
+% \begin{slide}
+% Common Mosquito Model % in disease contexts, not used absolutely everywhere
+% 
+% TODO sine
+% \end{slide}
+% 
+% \begin{slide}
+% ...{\em vs.} Common Mosquito Abundance
+% 
+% TODO overlay mosquito pops with sine, match peaks
+% \end{slide}
+% 
+% \begin{slide}
+% So: low hanging fruit
+% 
+% preview: no sophisticated analysis to pick said fruit \\
+% but these basic analyses provide fertile ground for much more quantitative detail % note about the value of this approach in general to science engineering
+% \end{slide}
+% 
+% \begin{slide}
+% \title{Engineering \&\ Maths Refresher, I}
+% \begin{enumerate}
+% \item useful to write models in terms of measurable parameters,
+% \item measurable parameters are not scale-free,
+% \item mathematics is more useful when scale free, therefore
+% \item dimensional analysis is awesome
+% \end{enumerate}
+% \end{slide}
+% 
+% \begin{slide}
+% where $M(t)$ is mosquito population w.r.t time
+% \begin{align*}
+% \dot{M(t)} = E(t) - \lambda M(t)
+% \end{align*}
+% defined on $t\in(-T/2,T/2)$
+% \end{slide}
+% 
+% \begin{slide}
+% common usage is $M(t)\propto$ simple trigonometric
+% 
+% What salient observed features does that miss?
+% 
+% aside: why replace given $M(t)$ with given $\dot{M(t)}$?
+% \end{slide}
+% 
+% \begin{slide}
+% Salient features:
+% \begin{itemize}
+% \item short time with appreciable population
+% % note: measure of pop. may be totally unreliable; however, trappable pop might good surrogate for active pop.
+% \item even shorter time for population rise and fall
+% \item low correlation with early and peak populations % accurate? provide comparison plots?
+% \end{itemize}
+% 
+% Need a spike-like $E(t)$ to replicate these.  Candidates?
+% \end{slide}
+% 
+% \begin{slide}
+% Spike-like could be more formally $\delta$-function like.
+% 
+% So: use $\delta$-function approximations.
+% \end{slide}
+% 
+% \begin{slide}
+% TODO list approximate delta functions.
+% \end{slide}
+% 
+% \begin{slide}
+% What should we use for the shape parameters?
+% 
+% clue: want oranges-to-oranges comparisons between the options
+% \end{slide}
+% 
+% \begin{slide}
+% I chose to make mosquito total births equivalent
+% 
+% TODO $M_p$ equation
+% 
+% and then to apply a subjective ``constraint'' on $\Delta t$
+% 
+% TODO delta t stuff
+% \end{slide}
+% 
+% \begin{slide}
+% TODO list approximate delta functions with params in place
+% \end{slide}
+% 
+% \begin{slide}
+% Now everything is on the same scale, but rewind: don't have any of the convenience of having the same scale.
+% 
+% So: dimensional analysis.  What parameters should be eliminated?
+% \end{slide}
 
 \end{document}
