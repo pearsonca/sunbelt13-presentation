@@ -1,30 +1,63 @@
 \documentclass{beamer}
 \usepackage{amsmath}
 
-% \newcommand{\spres}{\frame{}
-% \newcommand{\nextslide}{}
-% \frame{}
-% \newcommand{\epres}{}}
-% 
-% \setlength{\pdfhorigin}{1truein}
-% \setlength{\pdfvorigin}{1truein}
-% \makeatletter
-% \setlength{\pdfpagewidth}{\strip@pt\paperheight truept}
-% \setlength{\pdfpageheight}{\strip@pt\paperwidth truept}
-% \makeatother
-% 
-% \slideframe{none}
-
 \usetheme{boxes}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
-\title{Simple Mosquito Modeling}
+\title{Slightly Less Simple Mosquito Modeling}
 \author[Pearson]{Carl~A.~B.~Pearson}
 \institute[University of Florida]{
 Emerging Pathogens Institute, University of Florida
 }
 \frame{\titlepage}
+
+\frame{
+<<fig1,echo=FALSE>>=
+periodT <- 366; omega <- 2*pi/periodT
+monthDays<-c(31,29,31,30,31,30,31,31,30,31,30,31)
+monthOffset<- -(rev(cumsum(monthDays)) + -periodT/2)
+monthInset<- monthOffset + 15
+fun <- function(x) { cos(omega*x) }
+cplot <- function() {
+plot(fun, xlim=c(-periodT/2,periodT/2), 
+     xlab="",yaxt="n",xaxt="n",ylab="Mosquito Abundance",type="l",col="blue")
+axis(side=1, at=c(monthOffset,periodT/2), labels=F)
+axis(side=1, at=monthInset, labels=c("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"),tick=F, cex.axis=0.7)
+}
+#lines(c(0,0),c(0,E_0),col="blue")
+#axis(side=2,at=c(0,E_0),col.axis="blue", labels=c(0,expression(E[0])))
+@
+
+\begin{figure}
+\begin{center}
+<<plotfig1,fig=TRUE,echo=FALSE>>=
+cplot()
+@
+\end{center}
+\end{figure}
+
+}
+
+\frame{
+
+\begin{figure}
+\begin{center}
+<<plotfig2,fig=TRUE,echo=FALSE>>=
+dat <- read.csv('mosquito.csv')
+#sagiyama <- dat[which(dat$site == 'Sagiyama'),]
+#sagiyama$date <- as.Date(sagiyama$date,"%d-%b-%Y")
+#sagiyama$date <- sapply(sagiyama$date,function(date){ as.POSIXlt(as.Date(date,"%d-%b-%Y"))$yday })
+natori <- dat[which(dat$site == 'Natori'),]
+natori$date <- sapply(natori$date,function(date){ as.POSIXlt(as.Date(date,"%d-%b-%Y"))$yday })
+
+cplot()
+lines(x=natori$date-periodT/2,y=natori$moz/max(natori$moz))
+@
+\end{center}
+\end{figure}
+
+}
 
 \frame{
 \frametitle{Emphasis: Simple}
