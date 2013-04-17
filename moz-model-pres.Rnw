@@ -1,8 +1,17 @@
-\documentclass{beamer}
+\documentclass{beamer}\usetheme{boxes}
+
 \usepackage{amsmath,hyperref}
 
-\usetheme{boxes}
+\newcommand{\Mp}{\ensuremath{{M_{+}}}}
+\newcommand{\barMp}{\ensuremath{\overline{\Mp}}}
+\newcommand{\Dt}{\ensuremath{\Delta t}}
+\newcommand{\tM}[1]{\ensuremath{\tilde{M}(#1)}}
+\newcommand{\tMt}{\tM{\tau}}
+\newcommand{\tMB}{\ensuremath{{\tilde{M}_B}}}
+\newcommand{\tE}[1]{\ensuremath{{\tilde{E}(#1)}}}
+\newcommand{\tEt}{\tE{\tau}}
 
+\newcommand{\bskip}{\\~\\}
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 \title{Slightly Less Simple Mosquito Modeling}
@@ -15,16 +24,18 @@ Emerging Pathogens Institute, University of Florida
 \frame{
 \frametitle{What's this talk really about?}
 \begin{itemize}
+\item finding low-hanging fruit,
 \item expression with models,
 \item simple analytical approaches,
 \item a little dimensional analysis,
-\item how to connect those with experiments, and
+\item how to connect those with experiments and get higher up the tree, and
 \item a little about work habits and tools
 \end{itemize}
+% I'm going to talk about a project I'm just starting, so the associated science / analysis probably seems simple.  That's a surprisingly good place to start -- small, with some ideas in the back of your mind of where to go from there.  This is kind of the modeling complement to Ray's point about looking at low moments in your data, Fourier components, etc - figure out what the basic views are telling you, and use that to find out where to go.
 }
 
 \frame{
-
+\frametitle{A Not Atypical Model of Vector Population}
 \begin{figure}
 \begin{center}
 <<plotfig1,fig=TRUE,echo=FALSE>>=
@@ -43,18 +54,18 @@ cplot()
 @
 \end{center}
 \end{figure}
-
+% this is a not uncommon model of a seasonally varying vector population.
 }
 
 \frame{
-
+\frametitle{But\ldots}
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{insert.pdf}
 \caption{Bicout et al. "Horse-, Bird-, and Human-Seeking Behavior and Seasonal Abundance of Mosquitos in a West Nile Virus Focus of Southern France". J. Med. Entomol. 43(5): 936-946 (2006)}
 \end{center}
 \end{figure}
-
+% this is a not uncommon measurement of a seasonally varying vector population.
 }
 
 \frame{
@@ -66,6 +77,7 @@ M(t) = C\sin(\omega t+\theta)
 $$
 
 \ldots and these features can be critical to predicting transmission dynamics, and thus planning interventions.
+% the model and the plot were noticeably different.  That doesn't always matter, but sometimes it can, and (though I don't talk about it in this short format) it definitely does for vector mediated infection.  Think about a really simple intervention: spraying insecticide to keep the mosquito population below a certain level.  If you assume the trigonometric version, you can buy the wrong amount (both too little and too much) depending on that level relative to the peak.  That's before even considering that you might have incorrectly picked the level based on a sine model.
 }
 
 \frame{
@@ -79,11 +91,21 @@ What's appealling about this trigonometric representation?  Simplicity:
 \end{itemize}
 
 Possible to identify alternatives that {\em can} match salient features, but still retain these features?
+% there's a lot to be said for a trignometric representation.  We get oscillation for ``free''
 }
 
 \frame{
-What are those salient features?
+What are those salient features?  Let's look again.
 }
+
+\frame{
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{insert.pdf}
+\end{center}
+\end{figure}
+}
+
 
 \frame{
 \begin{itemize}
@@ -94,6 +116,7 @@ What are those salient features?
 \item then rapidly declines,
 \item apparently connected with resource availability \&\ environmental suitability
 \end{itemize}
+% aside: and if you dig around the experimental data, there are also situations where the mosquito population looks almost exactly like a trignometric function! so, ideally we want a form that has a (co)sine like form for certain parameters
 }
 
 \frame{
@@ -109,88 +132,134 @@ What's present in the trigonometric formulation?
 }
 
 \frame{
+What does the last point tell us?  That we need to stub out a connection to an external force.  So, instead of just stating that mosquito populations oscillate, let's propose something else, $E(t)$, does and consider what that means for mosquito population*.  {\em I.e.}, consider solutions to:
 
+$$
+\dot{M(t)} = E(t) - \lambda M(t)
+$$
+
+*and also just guess that mosquitos, like many other ecological phenomena, decay exponentially when their external resource supply is removed.
+}
+
+\frame{
+\frametitle{Picking Candidates}
+We want to meet those criteria, which mostly amount to ``spikey'' function options, since the sharpness in $E(t)$ will carry over to $M(t)$.  There are a variety of functions to satisfy that.
+
+What else would need to ensure?
+% that those functions share some features so that we're making oranges-to-oranges comparison.  This amounts to picking what features we want to match between those functions.  Extrema are common points to match, but to match M(t) extrema, we are doing so after some mathematical contortions.  I'd much prefer to put the matching constraints on E(t), while still having them correspond to an M measurement.  One easy option, and the one I've choosen to go with, is to match the integral of E over the interval.
+}
+
+\frame{
+\frametitle{Alternatives I}
+\begin{align*}
+E(t) &= \begin{cases}
+        \dfrac{\Mp}{\Dt} & t \in \Dt \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Step} \\
+E(\rho, t) &= \begin{cases}
+        \dfrac{2\Mp}{\Dt(2-\rho)} & t \in \Dt(1-\rho) \\
+        \dfrac{2\Mp}{\Dt(2-\rho)\rho}\left(1-\dfrac{2|t|}{\Dt}\right) & t \in \rho\Dt \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Modified Step} \\
+E(t) &= \dfrac{2\Mp}{\Dt}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{8t^2}{\Dt^2}}\tag{Approximate $\delta$}
+\end{align*}
+}
+
+\frame{
+\frametitle{Alternatives II}
+\begin{align*}
+E(t) &= \dfrac{\Mp}{\Dt}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{\sin^2 \omega t }{\omega^2\Dt^2}}\quad (\omega = \dfrac{\pi}{T})\tag{Trig. Approximate $\delta$} \\
+E(t) &= \dfrac{\Mp}{T}\left(1+\cos\left(\frac{2\pi}{T} t\right)\right)\tag{Trig.} \\
+E(t) &= \dfrac{(2^n n!)^2}{(2n)!}\dfrac{\Mp}{T}\cos^{2n}\left(\frac{4\pi}{T} t\right)\quad (n=\lfloor 2^{-1}\sin^{-2}\dfrac{\pi\Dt}{2T}\rfloor)\tag{Proper Trig.} \\
+E(c,t) &= \dfrac{\Mp}{\Dt}\left[\dfrac{1}{1+e^{-c(t+\Dt/2)}}-\dfrac{1}{1+e^{-c(t-\Dt/2)}}\right] \tag{Double Logistic} \\
+\end{align*}
+}
+
+\frame{
+\frametitle{Aside: Dimensional Analysis}
+Those equations have a lot of parameters, as do the resulting integral solutions.
+\bskip
+Fortunately, everything you learned in engineering coursework can apply here as well.
+\bskip
+So, how can remove the scales?
+% at first glance, it seems impossible that we can get the kind of value out of dimensional analysis that we can in, say, aerodynamics.  However, there's some increasing evidence about temperature and humidity moderated vector activity / disease transmissibility / incubation times.  Some of it is switch-like, some of it appears to be a smooth transition.  We can also potentially enforce a strong control on the \Mp parameter, which is important when we carry this rescaling through to transmission dynamics
+% ultimately, chose to scale by period and \Mp
+% \Mp disappears un-interestingly into M, but T remains in a scale decay parameter
+}
+
+\frame{
+\frametitle{Scale-free Alternatives I}
+\begin{align*}
+\tE{\rho,\tau} &= \begin{cases}
+        \dfrac{1}{\rho} & |\tau| \le \rho/2 \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Step} \\
+\tE{\rho,\rho_\Delta, \tau} &= \begin{cases}
+        \dfrac{2}{\rho(2-\rho_\Delta)} & \tau \in \rho(1-\rho_\Delta) \\
+        \dfrac{2}{\rho(2-\rho_\Delta)\rho_\Delta}\left(1-\dfrac{2|\tau|}{\rho}\right) & \tau \in \rho\rho_\Delta \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Modified Step} \\
+\tE{\rho,\tau} &= \dfrac{2}{\rho}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{8}{\rho^2}\tau^2}\tag{Approximate $\delta$}
+\end{align*}
+}
+
+\frame{
+\frametitle{Scale-free Alternatives II}
+\begin{align*}
+\tE{\rho,\tau} &= \dfrac{1}{\rho}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{\sin^2 \pi \tau }{\pi^2\rho^2}}\tag{Trig. Approximate $\delta$} \\
+\tEt &= \left(1+\cos{2\pi\tau}\right)\tag{Trig.} \\
+\tE{\rho,\tau} &= \dfrac{(2^n n!)^2}{(2n)!}\cos^{2n}4\pi\tau\quad (n=\lfloor 2^{-1}\sin^{-2}\dfrac{\pi\rho}{2}\rfloor)\tag{Proper Trig.} \\
+\tE{\tilde{c}=cT,\rho,\tau} &= \dfrac{1}{\rho}\left[\dfrac{1}{1+e^{-\tilde{c}(\tau+\rho/2)}}-\dfrac{1}{1+e^{-\tilde{c}(\tau-\rho/2)}}\right] \tag{Double Logistic} \\
+\end{align*}
+}
+
+\frame{
+\frametitle{The Resulting Mosquito Populations}
+The analytical work to get exact $M(t)$ is\ldots tedious.  Thankfully, there are numerical integrators!
+\bskip
+Which gives us a window to qualify these alternatives rapidly, and then decide which to thoroughly investigate.
+}
+
+\frame{
+\frametitle{TODO insert poster figs}
+}
+
+\frame{
+\frametitle{Thoughts?}
+What do {\em you} think about the options?
+%I'm inclined to say they are all the same!
 }
 
 
 \frame{
-\title{Engineering \&\ Maths Refresher, I}
-\begin{enumerate}
-\item useful to write models in terms of measurable parameters,
-\item measurable parameters are not scale-free,
-\item mathematics is more useful when scale free, therefore
-\item dimensional analysis is awesome
-\end{enumerate}
+\frametitle{Back To Oversimplification Question}
+Are these alternatives still too simple?
+\bskip
+They are all built assuming a stable driver, which is inaccurate.
+\bskip
+But: this framework presents an easy way to consider $E(t)$ changes as perturbations.
+% and rapidly compare across E(t) options
+That is, given the stable solution at the start of a period, how do changes to the driver in that period transform the end-of-period outcome?
+% and thus the next period, and so on.  If driver changes are mostly damped, then it makes a lot of sense to talk about an average annual outcome and then perturb it given a short history / some forecasting.  This makes both near and long prediction (with confidence intervals) a much more tractable task.  It also provides a lot of power when talking about structural shifts (e.g., more average rainfall / longer suitable temperature ranges for foreseeable future)
+% this is one of the next steps in this particular project
 }
 
-% \frame{
-% where $M(t)$ is mosquito population w.r.t time
-% \begin{align*}
-% \dot{M(t)} = E(t) - \lambda M(t)
-% \end{align*}
-% defined on $t\in(-T/2,T/2)$
-% }
-% 
-% \frame{
-% common usage is $M(t)\propto$ simple trigonometric
-% 
-% What salient observed features does that miss?
-% 
-% aside: why replace given $M(t)$ with given $\dot{M(t)}$?
-% }
-% 
-% \frame{
-% Salient features:
-% \begin{itemize}
-% \item short time with appreciable population
-% % note: measure of pop. may be totally unreliable; however, trappable pop might good surrogate for active pop.
-% \item even shorter time for population rise and fall
-% \item low correlation with early and peak populations % accurate? provide comparison plots?
-% \end{itemize}
-% 
-% Need a spike-like $E(t)$ to replicate these.  Candidates?
-% }
-% 
-% \frame{
-% Spike-like could be more formally $\delta$-function like.
-% 
-% So: use $\delta$-function approximations.
-% }
-% 
-% \frame{
-% TODO list approximate delta functions.
-% }
-% 
-% \frame{
-% What should we use for the shape parameters?
-% 
-% clue: want oranges-to-oranges comparisons between the options
-% }
-% 
-% \frame{
-% I chose to make mosquito total births equivalent
-% 
-% TODO $M_p$ equation
-% 
-% and then to apply a subjective ``constraint'' on $\Delta t$
-% 
-% TODO delta t stuff
-% }
-% 
-% \frame{
-% TODO list approximate delta functions with params in place
-% }
-% 
-% \frame{
-% Now everything is on the same scale, but rewind: don't have any of the convenience of having the same scale.
-% 
-% So: dimensional analysis.  What parameters should be eliminated?
-% }
+\frame{
+\frametitle{So What?}
+What does this basic analysis give us?
+\begin{itemize}
+\item rough boundaries as input to other models,
+%A complete picture of a disease has several interacting parts.  This particular work is associated with Japanese Encephalitis Virus, and how it moves between wildlife, livestock (pigs), and humans.  This analytical work maps out the interesting jigsaw borders for mosquito populations, which we in turn use with an agent-based model of mosquito, livestock, and human interaction.  That model is in turn fit with an Approximate Bayesian Computation tool
+\item where more complex approaches are needed (agent-based, spatially explicity, {\em etc}.)
+%For example, this model de-couples mosquito reproduction from their population.  There are ecological ranges where this is fine, but if you wanted to consider an optimal control style real-time intervention, you'd need to consider what the population looks like at very low levels and its amplification rate.  I've done this sort of analysis for neutron transport in reactor design -- shooting from the hip, that kind of mosquito control is a lot harder problem
+\item a cog for ranges where this kind of model is good (or good enough [for now])
+\end{itemize}
+}
 
 \frame{
 \frametitle{``New'' Habits and Tools}
 The general arrow of scientific work has been towards increased specialization and collaboration, and to increasingly digitally-based components.
-
+\bskip
 This presents a few challenges to getting work done:
 \begin{itemize}
 \item lashing together methods from different fields,
@@ -206,7 +275,7 @@ How can we address these issues?
 \frame{
 \frametitle{``New'' Habits and Tools}
 Fortunately, there's a whole industry that's continuously tackling this exact problem: software development, and more specifically open-source software projects.
-
+\bskip
 What tools and habits can we adopt from this field?  What risks are associated with that?  What's still missing?
 }
 
