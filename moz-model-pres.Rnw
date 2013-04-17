@@ -1,5 +1,5 @@
 \documentclass{beamer}
-\usepackage{amsmath}
+\usepackage{amsmath,hyperref}
 
 \usetheme{boxes}
 
@@ -188,11 +188,66 @@ What's present in the trigonometric formulation?
 % }
 
 \frame{
-\frametitle{Some Habits and Tools}
-The general arrow of scientific work has been towards increased specialization and collaboration.
+\frametitle{``New'' Habits and Tools}
+The general arrow of scientific work has been towards increased specialization and collaboration, and to increasingly digitally-based components.
 
-This presents a few challenges to getting work done.  The final specialist work product can be very intimidating to collaborators with other specialities, which can make a collaboration's skeptical review of their combined product difficult. That's on top of the pure mechanics of handling multiple people modifying the same ``thing''.
+This presents a few challenges to getting work done:
+\begin{itemize}
+\item lashing together methods from different fields,
+\item getting genuine peer-review, and
+\item the purely mechanical handling of different people simultaneously working on the same ``thing''
+\end{itemize}
+
+How can we address these issues?
+%.  The final specialist work product can be very intimidating to collaborators with other specialities, which can make a collaboration's skeptical review of their combined product difficult. That's on top of the pure mechanics of handling multiple people modifying the same ``thing''.
 % I come from a background where all collaborators are responsible for the entire product, not just their narrowly focused piece
+}
+
+\frame{
+\frametitle{``New'' Habits and Tools}
+Fortunately, there's a whole industry that's continuously tackling this exact problem: software development, and more specifically open-source software projects.
+
+What tools and habits can we adopt from this field?  What risks are associated with that?  What's still missing?
+}
+
+\frame{
+\frametitle{The Good}
+\begin{itemize}
+\item version control systems,
+\item collaborative tools on top of those,
+\item preference for code documentation leading to
+\begin{itemize}
+\item bite-sized parts,
+\item modularity,
+\item re-usability, and
+\item verifiability (a/k/a unit testing)
+\end{itemize}
+\item open availability of all source,
+\item combines with version control to provide complete history of work product
+\end{itemize}
+}
+
+\frame{
+\frametitle{The Bad}
+\begin{itemize}
+\item openness can make for opportunity to be ``scooped'',
+\item can focus more on process than product,
+\item learning curve for most scientists
+\end{itemize}
+}
+
+\frame{
+\frametitle{The Ugly}
+\begin{itemize}
+\item university contracts' intellectual property clauses,
+\item academic institutions don't ``get'' these tools,
+\item community adoption?
+\end{itemize}
+}
+
+\frame{
+\frametitle{Why bring this up?}
+It's a little bit advocacy, and \href{http://github.com/pearsonca/moz-model-pres}{I built this presentation using this work model.}
 }
 
 \end{document}
