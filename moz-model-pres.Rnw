@@ -67,16 +67,24 @@ What's appealling about this trigonometric representation?  Simplicity:
 \item ``easy'' analytical form
 \end{itemize}
 
-Possible to identify alternatives that {\em can} match salient features
+Possible to identify alternatives that {\em can} match salient features, but still retain these features?
 }
 
 \frame{
-\frametitle{So, Low Hanging Fruit}
-
-preview: no sophisticated analysis to pick said fruit \\
-but these basic analyses provide fertile ground for much more quantitative detail
-% note about the value of this approach in general to science engineering
+What are those salient features?
 }
+
+\frame{
+\begin{itemize}
+\item every year,
+\item over a relatively short duration,
+\item the mosquito population rapidly increases,
+\item sits at a high level of activity,
+\item then rapidly declines,
+\item apparently connected with resource availability \&\ environmental suitability
+\end{itemize}
+}
+
 
 \frame{
 \title{Engineering \&\ Maths Refresher, I}
