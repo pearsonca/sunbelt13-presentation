@@ -142,9 +142,10 @@ $$
 }
 
 \frame{
-\frametitle{Picking Candidates}
-We want to meet those criteria, which mostly amount to ``spikey'' function options, since the sharpness in $E(t)$ will carry over to $M(t)$.  There are a variety of functions to satisfy that.
-
+\frametitle{Picking Candidate Functions}
+Most of the criteria boildown to a ``spikey'' function options
+\bskip
+% suggestions for those?
 What else would need to ensure?
 % that those functions share some features so that we're making oranges-to-oranges comparison.  This amounts to picking what features we want to match between those functions.  Extrema are common points to match, but to match M(t) extrema, we are doing so after some mathematical contortions.  I'd much prefer to put the matching constraints on E(t), while still having them correspond to an M measurement.  One easy option, and the one I've choosen to go with, is to match the integral of E over the interval.
 }
@@ -239,7 +240,7 @@ They are all built assuming a stable driver, which is inaccurate.
 \bskip
 But: this framework presents an easy way to consider $E(t)$ changes as perturbations.
 % and rapidly compare across E(t) options
-That is, given the stable solution at the start of a period, how do changes to the driver in that period transform the end-of-period outcome?
+%That is, given the stable solution at the start of a period, how do changes to the driver in that period transform the end-of-period outcome?
 % and thus the next period, and so on.  If driver changes are mostly damped, then it makes a lot of sense to talk about an average annual outcome and then perturb it given a short history / some forecasting.  This makes both near and long prediction (with confidence intervals) a much more tractable task.  It also provides a lot of power when talking about structural shifts (e.g., more average rainfall / longer suitable temperature ranges for foreseeable future)
 % this is one of the next steps in this particular project
 }
@@ -252,18 +253,13 @@ What does this basic analysis give us?
 %A complete picture of a disease has several interacting parts.  This particular work is associated with Japanese Encephalitis Virus, and how it moves between wildlife, livestock (pigs), and humans.  This analytical work maps out the interesting jigsaw borders for mosquito populations, which we in turn use with an agent-based model of mosquito, livestock, and human interaction.  That model is in turn fit with an Approximate Bayesian Computation tool
 \item where more complex approaches are needed (agent-based, spatially explicity, {\em etc}.)
 %For example, this model de-couples mosquito reproduction from their population.  There are ecological ranges where this is fine, but if you wanted to consider an optimal control style real-time intervention, you'd need to consider what the population looks like at very low levels and its amplification rate.  I've done this sort of analysis for neutron transport in reactor design -- shooting from the hip, that kind of mosquito control is a lot harder problem
-\item a cog for ranges where this kind of model is good (or good enough [for now])
+\item a component connectable to other models
 \end{itemize}
 }
 
 \frame{
-\frametitle{Why Come to These Meetings?}
-
-}
-
-\frame{
-\frametitle{``New'' Habits and Tools}
-New challenges to getting work done:
+\frametitle{Seque: Need ``New'' Habits and Tools}
+New challenges to getting science done:
 \begin{itemize}
 \item lashing together methods from different fields,
 \item getting genuine peer-review, and
@@ -277,10 +273,12 @@ How can we address these issues?
 }
 
 \frame{
-\frametitle{``New'' Habits and Tools}
-Fortunately, there's a whole industry that's continuously tackling this exact problem: software development, and more specifically open-source software projects.
+\frametitle{Solutions from Software Industry?}
+What tools and habits can we adopt from this field?
 \bskip
-What tools and habits can we adopt from this field?  What risks are associated with that?  What's still missing?
+What risks are associated with that?
+\bskip
+What's still missing?
 }
 
 \frame{
@@ -330,5 +328,10 @@ It's a little bit advocacy, and I built this presentation using this work model.
 \end{block}
 }
 \usebackgroundtemplate{}
+
+\frame{
+\frametitle{Why Come to These Meetings?}
+
+}
 
 \end{document}
