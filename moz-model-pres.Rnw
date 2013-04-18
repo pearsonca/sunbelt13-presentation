@@ -107,7 +107,7 @@ What are those salient features?  Let's look again.
 \frame{
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{insert.pdf}
+\includegraphics[width=0.8\textwidth]{justone.pdf}
 \end{center}
 \end{figure}
 }
@@ -121,7 +121,7 @@ What are those salient features?  Let's look again.
 \item the mosquito population rapidly increases,
 \item sits at a high level of activity,
 \item then rapidly declines,
-\item apparently connected with resource availability \&\ environmental suitability
+\item connection to environmental parameters
 \end{itemize}
 % aside: and if you dig around the experimental data, there are also situations where the mosquito population looks almost exactly like a trignometric function! so, ideally we want a form that has a (co)sine like form for certain parameters
 }
@@ -134,7 +134,7 @@ What are those salient features?  Let's look again.
 \item over a relatively short duration,
 \item the mosquito population rapidly increases,
 \item then rapidly declines,
-\item apparently connected with resource availability \&\ environmental suitability
+\item connection to environmental parameters
 \end{itemize}
 }
 \usebackgroundtemplate{}
@@ -144,7 +144,7 @@ What are those salient features?  Let's look again.
 Need:
 
 \begin{itemize}
-\item worth connecting to external force
+\item way to connect to external factors
 \item ``spikey''
 \item oscillatory
 \end{itemize}
@@ -500,7 +500,19 @@ PlotStacker(E2log)
 
 \frame{
 \frametitle{Thoughts?}
+\begin{columns}[t]
+\begin{column}{0.3\textwidth}
 What do {\em you} think about the options?
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{figure}
+\begin{center}
+\includegraphics[width=1.1\textwidth]{justone.pdf}
+\end{center}
+\end{figure}
+\end{column}
+
+\end{columns}
 %I'm inclined to say they are all the same!
 }
 
