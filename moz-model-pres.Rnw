@@ -61,8 +61,8 @@ cplot()
 \frametitle{But\ldots}
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{insert.pdf}
-\caption{Bicout et al. "Horse-, Bird-, and Human-Seeking Behavior and Seasonal Abundance of Mosquitos in a West Nile Virus Focus of Southern France". J. Med. Entomol. 43(5): 936-946 (2006)}
+\includegraphics[width=0.9\textwidth]{insert.pdf}
+\caption{Bicout et al. J. Med. Entomol. 43(5): 936-946 (2006)}
 \end{center}
 \end{figure}
 % this is a not uncommon measurement of a seasonally varying vector population.
@@ -70,19 +70,26 @@ cplot()
 
 \frame{
 \frametitle{So, a Disconnect.}
-Specifically, it is impossible to match features like peak population, total population over a year, and turnover rate with a functional form
+With
 
 $$
 M(t) = C\sin(\omega t+\theta)
 $$
 
-\ldots and these features can be critical to predicting transmission dynamics, and thus planning interventions.
+Impossible to match features like
+\begin{itemize}
+\item peak population,
+\item total population over a year, and
+\item turnover rate
+\end{itemize}
+
+These can be critical to predicting transmission dynamics.
 % the model and the plot were noticeably different.  That doesn't always matter, but sometimes it can, and (though I don't talk about it in this short format) it definitely does for vector mediated infection.  Think about a really simple intervention: spraying insecticide to keep the mosquito population below a certain level.  If you assume the trigonometric version, you can buy the wrong amount (both too little and too much) depending on that level relative to the peak.  That's before even considering that you might have incorrectly picked the level based on a sine model.
 }
 
 \frame{
 \frametitle{Do Better, But Keep It Simple}
-What's appealling about this trigonometric representation?  Simplicity:
+What's good about trigonometric representation?  Simplicity:
 
 \begin{itemize}
 \item two parameters
@@ -109,6 +116,7 @@ What are those salient features?  Let's look again.
 
 \frame{
 \begin{itemize}
+\frametitle{Salient Features}
 \item every year,
 \item over a relatively short duration,
 \item the mosquito population rapidly increases,
@@ -120,33 +128,42 @@ What are those salient features?  Let's look again.
 }
 
 \frame{
-What's present in the trigonometric formulation?
+\frametitle{Salient Features in Trig. Representation}
 \begin{itemize}
 \item every year, {\bf CHECK!} \ldots {\em but not the rest of:}
 \item over a relatively short duration,
 \item the mosquito population rapidly increases,
-\item sits at a high level of activity,
 \item then rapidly declines,
 \item apparently connected with resource availability \&\ environmental suitability
 \end{itemize}
 }
 
 \frame{
-What does the last point tell us?  That we need to stub out a connection to an external force.  So, instead of just stating that mosquito populations oscillate, let's propose something else, $E(t)$, does and consider what that means for mosquito population*.  {\em I.e.}, consider solutions to:
+\frametitle{Getting at the Other Points}
+Need:
+
+\begin{itemize}
+\item worth connecting to external force
+\item ``spikey''
+\item oscillatory
+\end{itemize}
+
+Can get that with repeating boundary conditions on
 
 $$
 \dot{M(t)} = E(t) - \lambda M(t)
 $$
 
-*and also just guess that mosquitos, like many other ecological phenomena, decay exponentially when their external resource supply is removed.
+and appropriate $E(t)$.
+%and also just guess that mosquitos, like many other ecological phenomena, decay exponentially when their external resource supply is removed.
 }
 
 \frame{
-\frametitle{Picking Candidate Functions}
-Most of the criteria boildown to a ``spikey'' function options
+\frametitle{Appropriate $E(t)$}
+Most of the criteria boildown to a ``spikey'' function options.  Suggestions?
 \bskip
 % suggestions for those?
-What else would need to ensure?
+What else would we need to ensure?
 % that those functions share some features so that we're making oranges-to-oranges comparison.  This amounts to picking what features we want to match between those functions.  Extrema are common points to match, but to match M(t) extrema, we are doing so after some mathematical contortions.  I'd much prefer to put the matching constraints on E(t), while still having them correspond to an M measurement.  One easy option, and the one I've choosen to go with, is to match the integral of E over the interval.
 }
 
@@ -221,14 +238,288 @@ The analytical work to get exact $M(t)$ is\ldots tedious.  Thankfully, there are
 Which gives us a window to qualify these alternatives rapidly, and then decide which to thoroughly investigate.
 }
 
+<<figcode,echo=FALSE>>=
+periodT <- 100
+rhoT <- 0.2
+Mp <- 100
+resolution <- 0.0001
+lambda <- 0.2
+deltaT <- periodT * rhoT
+MpDt <- Mp / deltaT
+barMpDrho <- Mp / (rhoT * periodT)
+xlim <- c(-periodT/2,periodT/2)
+xtime <- seq(xlim[1],xlim[2],periodT*resolution)
+MStepPeak <- Mp / (lambda*deltaT) * (1 - exp(-lambda*deltaT)) / (1 - exp(-lambda*periodT))
+
+Tlambda <- periodT*lambda
+taulim <- c(-1/2,1/2)
+xtau <- seq(taulim[1],taulim[2],resolution)
+D <- 1 / (exp(Tlambda) - 1)
+library(bvpSolve)
+Msol<-function(E) {
+  bvpshoot(
+    yini=c(y1=NA),
+    x=xtime,
+    func=function(t,y,parms) {
+      list(c(E(t) - lambda*y[1]))
+    },
+    guess=c(Mp/periodT),
+    yend=function(Y,yini,parms) {
+      c(Y[1] - yini[1])
+    }, 
+    parms=c(E=E,lambda=lambda),
+    maxiter=1e6
+  )
+}
+Mplot <- function(E,ylim=c(0,1.5*MStepPeak)) {
+  sol <- Msol(E)
+  plot(sol[,1],sol[,2],
+       type="l",
+       xlim=xlim,
+       ylim=ylim,
+       ylab="", xlab="",
+       xaxs="i", yaxs="i",
+       xaxp=c(-periodT/2,periodT/2,10),
+       bty="n")
+}
+MplotAdder<-function(Eref) {
+  refSol <- Msol(Eref)
+  function(E) {
+    plot(refSol[,1],refSol[,2],
+         type="l",
+         xlim=c(-periodT/2,periodT/2),
+         ylim=c(0,1.5*MStepPeak),
+         ylab="", xlab="",
+         xaxt="n", yaxt="n", lwd=2,
+         #xaxp=c(-periodT/2,periodT/2,10),
+         bty="n",col="lightgray")
+    axis(2,seq(0,1.5*MStepPeak,.5*MStepPeak),FALSE)
+    axis(3,seq(-periodT/2,periodT/2,10),FALSE)
+    sol <- Msol(E)
+    lines(sol[,1],sol[,2],lwd=2)
+  }
+}
+EplotAdder<-function(Eref) {
+  ytime <- Eref(xtime)
+  function(E) {
+    plot(xtime,ytime,
+         type="S",
+         xlim=c(-periodT/2,periodT/2),
+         ylim=c(0,2*MpDt),
+         ylab="", xlab="",
+         xaxt="n", yaxt="n", lwd=2,
+         #xaxp=c(-periodT/2,periodT/2,10),
+         bty="n",col="lightgray")
+    axis(2,seq(0,2*MpDt,.5*MpDt),FALSE)
+    axis(1,seq(-periodT/2,periodT/2,10),labels=FALSE)
+    lines(xtime,E(xtime),lwd=2)
+  }
+}
+# E function factories
+stopper<-function(which, deltaT=1,MpDt=1,rho=0,periodT=1,Mp=1) {
+  if (deltaT <= 0 | MpDt <= 0 | rho < 0 | rho > 1 | periodT <= 0 | Mp <= 0)
+    stop(paste(which,": check arguments",sep=" "))
+}
+# step and modified step functions
+EstepFac <- function(deltaT, MpDt, rho=0) {
+  stopper("EstepFac", deltaT=deltaT, MpDt=MpDt, rho=rho)
+  b <- deltaT/2
+  if (rho == 0) { # step function
+    function(t) {
+      ifelse(abs(t) <= b, MpDt, 0)
+    }
+  } else {
+    base <- 2*MpDt / (2-rho)
+    sloped<-function(abst) { (base/rho)*(1-abst/b) }
+    if (rho != 1) { # trapezoid
+      function(t) {
+        abst<-abs(t)
+        ifelse( abst<=b,
+                ifelse( abst<=b*(1-rho),
+                        base,
+                        sloped(abst)
+                )
+          ,0)
+      }
+    } else { # triangle
+      function(t) { 
+        abst<-abs(t)
+        ifelse( abst<=b, sloped(abst) ,0)
+      }
+    }
+  }
+}
+
+# delta function
+EdeltaFac <- function(deltaT, MpDt) {
+  stopper("EdeltaFac", deltaT=deltaT, MpDt=MpDt)
+  C <- MpDt * 2 * sqrt( 2/pi )
+  var <- -8 / deltaT^2
+  function(t) {
+    C * exp(var * t^2)
+  }
+} 
+
+# delta function composed with trigonometric function
+EdeltaTrigFac <- function(deltaT, MpDt, periodT) {
+  stopper("EdeltaTrigFac", deltaT=deltaT, MpDt=MpDt, periodT=periodT)
+  w <- pi / periodT
+  C <- MpDt * 2*sqrt( 2/pi )
+  var <- -8 / (w*deltaT)^2
+  function(t) {
+    C * exp(var * sin(w*t)^2)
+  }
+}
+
+# conventional trig-based function for seasonality
+EtrigFac <- function(Mp, periodT) { 
+  stopper("EtrigFac",Mp=Mp, periodT=periodT)
+  C <- Mp / periodT
+  w <- 2 * pi / periodT
+  function(t) {
+    C *(1+cos(w*t))
+  }
+} 
+
+# trig-based function w/ parameter to squeeze peak
+EtrigPropFac <- function(Mp, deltaT, periodT) {
+  stopper("EtrigPropFac",Mp=Mp, deltaT=deltaT, periodT=periodT)
+  omega <- pi / periodT
+  n <- floor((2*sin( pi*deltaT / (periodT*2) )^2)^(-1))
+  topf <- factorial(n)
+  bf <- factorial(2*n)
+  C <- 2^(2*n)*topf^2 / (periodT*bf) * Mp
+  function(t) {
+    C*cos(omega * t)^(2*n)
+  }
+} 
+
+# double logistic
+E2logFac<-function(Mp,deltaT,c) {
+  stopper("E2logFac", Mp=Mp, deltaT=deltaT)
+  C <- Mp / deltaT 
+  cdt <- c*deltaT / 2
+  function(t) {
+    C * ((1+exp(-c*t - cdt))^(-1) - (1+exp(-c*t + cdt))^(-1))
+  }
+}
+Estep <- EstepFac(deltaT,MpDt); # check("estep",Estep)
+Etrap <- EstepFac(deltaT, MpDt, .5); # check("etrap",Etrap)
+Etri <- EstepFac(deltaT, MpDt, 1); # check("etri",Etri)
+Edelta <- EdeltaFac(deltaT, MpDt); # check("edelta",Edelta)
+Edeltatrig <- EdeltaTrigFac(deltaT, MpDt, periodT); # check("edeltatrig",Edeltatrig)
+Etrig <- EtrigFac(Mp,periodT); # check("etrig",Etrig)
+Etrigprop <- EtrigPropFac(Mp,deltaT,periodT); # check("etrigprop",Etrigprop)
+E2log<-E2logFac(Mp,deltaT,1); # check("e2log",E2log)
+EtAdder<-EplotAdder(Estep)
+MpAdder<-MplotAdder(Estep)
+PlotStacker<-function(E,name) {
+  par(mfcol=c(2,1),mar=c(2,2,1,1))
+  EtAdder(E)
+  MpAdder(E)
+}
+@
+
 \frame{
-\frametitle{TODO insert poster figs}
+\begin{figure}
+\begin{center}
+<<pstrap,echo=FALSE,fig=TRUE>>=
+PlotStacker(Etrap)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<pstri,echo=FALSE,fig=TRUE>>=
+PlotStacker(Etri)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<psdel,echo=FALSE,fig=TRUE>>=
+PlotStacker(Edelta)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<psdeltrig,echo=FALSE,fig=TRUE>>=
+PlotStacker(Edeltatrig)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<pstrig,echo=FALSE,fig=TRUE>>=
+PlotStacker(Etrig)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<pstrigprop,echo=FALSE,fig=TRUE>>=
+PlotStacker(Etrigprop)
+@
+\end{center}
+\end{figure}
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<pslog,echo=FALSE,fig=TRUE>>=
+PlotStacker(E2log)
+@
+\end{center}
+\end{figure}
 }
 
 \frame{
 \frametitle{Thoughts?}
 What do {\em you} think about the options?
 %I'm inclined to say they are all the same!
+}
+
+\frame{
+\begin{figure}
+\begin{center}
+<<psmix,echo=FALSE,fig=TRUE>>=
+  refSol <- Msol(Estep)
+    plot(refSol[,1],refSol[,2],
+         type="l",
+         xlim=c(-periodT/2,periodT/2),
+         ylim=c(0,1.5*MStepPeak),
+         ylab="", xlab="",
+         xaxt="n", yaxt="n", lwd=2,
+         #xaxp=c(-periodT/2,periodT/2,10),
+         bty="n")
+    axis(2,seq(0,1.5*MStepPeak,.5*MStepPeak),FALSE)
+    axis(3,seq(-periodT/2,periodT/2,10),FALSE)
+  for (e in c(Etrap,Etri,Edelta,Edeltatrig,Etrigprop,E2log)) {
+    sol <- Msol(e)
+    lines(sol[,1],sol[,2],lwd=2,col="lightgray")
+  }
+  sol <- Msol(Etrig)
+  lines(sol[,1],sol[,2],lwd=2)
+@
+\end{center}
+\end{figure}
 }
 
 
