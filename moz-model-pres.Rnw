@@ -22,13 +22,12 @@ Emerging Pathogens Institute, University of Florida
 \frame{\titlepage}
 
 \frame{
-\frametitle{What's this talk really about?}
+\frametitle{What Will I Talk About?}
 \begin{itemize}
 \item finding low-hanging fruit,
 \item expression with models,
-\item simple analytical approaches,
-\item a little dimensional analysis,
-\item how to connect those with experiments and get higher up the tree, and
+\item value of simple analytical approaches ({\em e.g.}, dimensional analysis),
+\item how to build from simple models, and
 \item a little about work habits and tools
 \end{itemize}
 % I'm going to talk about a project I'm just starting, so the associated science / analysis probably seems simple.  That's a surprisingly good place to start -- small, with some ideas in the back of your mind of where to go from there.  This is kind of the modeling complement to Ray's point about looking at low moments in your data, Fourier components, etc - figure out what the basic views are telling you, and use that to find out where to go.
@@ -126,7 +125,8 @@ What are those salient features?  Let's look again.
 \end{itemize}
 % aside: and if you dig around the experimental data, there are also situations where the mosquito population looks almost exactly like a trignometric function! so, ideally we want a form that has a (co)sine like form for certain parameters
 }
-
+% plotfig1
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{moz-model-pres-plotfig1.pdf}}
 \frame{
 \frametitle{Salient Features in Trig. Representation}
 \begin{itemize}
@@ -137,6 +137,7 @@ What are those salient features?  Let's look again.
 \item apparently connected with resource availability \&\ environmental suitability
 \end{itemize}
 }
+\usebackgroundtemplate{}
 
 \frame{
 \frametitle{Getting at the Other Points}
@@ -421,6 +422,7 @@ PlotStacker<-function(E,name) {
 @
 
 \frame{
+\frametitle{Modified Step (Trapezoid)}
 \begin{figure}
 \begin{center}
 <<pstrap,echo=FALSE,fig=TRUE>>=
@@ -431,6 +433,7 @@ PlotStacker(Etrap)
 }
 
 \frame{
+\frametitle{Modified Step (Triangle)}
 \begin{figure}
 \begin{center}
 <<pstri,echo=FALSE,fig=TRUE>>=
@@ -441,6 +444,7 @@ PlotStacker(Etri)
 }
 
 \frame{
+\frametitle{Approx. $\delta$}
 \begin{figure}
 \begin{center}
 <<psdel,echo=FALSE,fig=TRUE>>=
@@ -451,6 +455,7 @@ PlotStacker(Edelta)
 }
 
 \frame{
+\frametitle{Trig. Approx. $\delta$}
 \begin{figure}
 \begin{center}
 <<psdeltrig,echo=FALSE,fig=TRUE>>=
@@ -461,6 +466,7 @@ PlotStacker(Edeltatrig)
 }
 
 \frame{
+\frametitle{Trigonometric}
 \begin{figure}
 \begin{center}
 <<pstrig,echo=FALSE,fig=TRUE>>=
@@ -471,6 +477,7 @@ PlotStacker(Etrig)
 }
 
 \frame{
+\frametitle{Proper Trigonometric}
 \begin{figure}
 \begin{center}
 <<pstrigprop,echo=FALSE,fig=TRUE>>=
@@ -481,6 +488,7 @@ PlotStacker(Etrigprop)
 }
 
 \frame{
+\frametitle{Double Logistic}
 \begin{figure}
 \begin{center}
 <<pslog,echo=FALSE,fig=TRUE>>=
@@ -602,12 +610,11 @@ What's still missing?
 \frametitle{The Ugly}
 \begin{itemize}
 \item university contracts' intellectual property clauses,
-\item academic institutions don't ``get'' these tools,
-\item community adoption?
+\item hiring \&\ retention don't (yet) ``get'' this model,
+\item critical community adoption level
 \end{itemize}
 }
 
-\definecolor{TrWhite}{RGB}{200,200,200}
 \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{githubbg.png}}
 \setbeamercolor{block body}{bg=white}
 \setbeamercolor{block title}{bg=lightgray}
@@ -620,9 +627,14 @@ It's a little bit advocacy, and I built this presentation using this work model.
 }
 \usebackgroundtemplate{}
 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{mozbg.png}}
+\setbeamercolor{block body}{bg=white}
+\setbeamercolor{block title}{bg=lightgray}
 \frame{
-\frametitle{Why Come to These Meetings?}
-
+\begin{block}{Let's Talk About Future Directions!}
+Mosquito Abundance Data, Iowa, 1960s to now: \href{http://mosquito.ent.iastate.edu/}{http://mosquito.ent.iastate.edu/}
+\end{block}
 }
+\usebackgroundtemplate{}
 
 \end{document}
