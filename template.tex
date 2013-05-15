@@ -1,0 +1,141 @@
+\documentclass{beamer}\usetheme{boxes}
+
+\usepackage{amsmath,hyperref}
+
+\newcommand{\Mp}{\ensuremath{{M_{+}}}}
+\newcommand{\barMp}{\ensuremath{\overline{\Mp}}}
+\newcommand{\Dt}{\ensuremath{\Delta t}}
+\newcommand{\tM}[1]{\ensuremath{\tilde{M}(#1)}}
+\newcommand{\tMt}{\tM{\tau}}
+\newcommand{\tMB}{\ensuremath{{\tilde{M}_B}}}
+\newcommand{\tE}[1]{\ensuremath{{\tilde{E}(#1)}}}
+\newcommand{\tEt}{\tE{\tau}}
+
+\newcommand{\bskip}{\\~\\}
+\usepackage{Sweave}
+\begin{document}
+\input{template-concordance}
+\title{A TEMPLATE}
+\author[Pearson]{Carl~A.~B.~Pearson}
+\institute[University of Florida]{
+Emerging Pathogens Institute, University of Florida
+}
+\frame{\titlepage}
+
+\frame{
+\frametitle{A SIMPLE LIST OF POINTS}
+\begin{itemize}
+\item point one,
+\item two,
+\item see
+\end{itemize}
+% notes-notes-notes
+}
+
+\frame{
+\frametitle{INSERTING AN R-GENERATED FIGURE}
+\begin{figure}
+\begin{center}
+\includegraphics{template-plotfig1}
+\end{center}
+\end{figure}
+% notes-notes-notes
+}
+
+\frame{
+\frametitle{INSERT ANOTHER PDF}
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{insert.pdf}
+\caption{Bicout et al. J. Med. Entomol. 43(5): 936-946 (2006)}
+\end{center}
+\end{figure}
+% this is a not uncommon measurement of a seasonally varying vector population.
+}
+
+\frame{
+\frametitle{SHOW SOME MATH}
+$$
+M(t) = C\sin(\omega t+\theta)
+$$
+}
+
+% plotfig1
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{template-plotfig1.pdf}}
+\frame{
+\frametitle{USE PREVIOUSLY GENERATING THING AS BACKGROUND}
+\begin{itemize}
+\item with
+\item some
+\item text
+\item over it
+\end{itemize}
+}
+\usebackgroundtemplate{}
+
+
+\frame{
+\frametitle{SEVERAL EQUATIONS}
+\begin{align*}
+E(t) &= \begin{cases}
+        \dfrac{\Mp}{\Dt} & t \in \Dt \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Step} \\
+E(\rho, t) &= \begin{cases}
+        \dfrac{2\Mp}{\Dt(2-\rho)} & t \in \Dt(1-\rho) \\
+        \dfrac{2\Mp}{\Dt(2-\rho)\rho}\left(1-\dfrac{2|t|}{\Dt}\right) & t \in \rho\Dt \\
+        0 & \textrm{otherwise}
+        \end{cases}\tag{Modified Step} \\
+E(t) &= \dfrac{2\Mp}{\Dt}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{8t^2}{\Dt^2}}\tag{Approximate $\delta$}
+\end{align*}
+}
+
+% DEFINE LOTS OF R...
+
+% THEN USE IT SEVERAL TIMES
+\frame{
+\frametitle{Modified Step (Trapezoid)}
+\begin{figure}
+\begin{center}
+\includegraphics{template-pstrap}
+\end{center}
+\end{figure}
+}
+
+\frame{
+\frametitle{Modified Step (Triangle)}
+\begin{figure}
+\begin{center}
+\includegraphics{template-pstri}
+\end{center}
+\end{figure}
+}
+
+\frame{
+\frametitle{Approx. $\delta$}
+\begin{figure}
+\begin{center}
+\includegraphics{template-psdel}
+\end{center}
+\end{figure}
+}
+
+\frame{
+\frametitle{USING COLUMNS EXAMPLE}
+\begin{columns}[t]
+\begin{column}{0.3\textwidth}
+TEXT LEFT, FIG RIGHT
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{figure}
+\begin{center}
+\includegraphics[width=1.1\textwidth]{justone.pdf}
+\end{center}
+\end{figure}
+\end{column}
+
+\end{columns}
+% notes-notes-notes
+}
+
+\end{document}
