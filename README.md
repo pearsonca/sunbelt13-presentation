@@ -9,7 +9,7 @@ To create a new presentation from this template (modified from https://help.gith
 
 2. go to appropriate filesystem location on command line (where you want new presentation to live)
 
-3. 
+3. then:
 ```
 $ git clone --bare https://github.com/pearsonca/beamer-stub.git # Make a bare clone of this repo
 $ cd beamer-stub.git
