@@ -3,3 +3,9 @@
 .project
 
 .texlipse
+*.log
+*concordance.tex
+*.nav
+*.snm
+*.gz
+*.toc
