@@ -26,13 +26,25 @@
 }
 
 \frame{
-\frametitle{What is {\em Covert}?}
-{\em a covert network} is a sub graph where interaction information is some combination of unavailable, unreliable, or (mostly) indistinguishable from the enclosing graph structure
+\frametitle{Overview}
+\begin{itemize}
+\item Definitions,
+\item A Model to Reflect Those,
+\item Implementation for a Particular Case: Salafi Jihadi Network,
+\item Some Results for that Implementation, and
+\item Flaws, Extensions, and Outlook
+\end{itemize}
 }
 
 \frame{
-\frametitle{\ldots or Operationally}
-A relatively small group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background
+\begin{block}{What is {\em Covert}?}
+{\em a covert network} is a sub graph where interaction information is some combination of unavailable, unreliable, or (mostly) indistinguishable from the enclosing graph structure
+\end{block}
+\begin{block}{\ldots or Operationally}
+A relatively small group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
+
+For this particular talk: Salafi Jihadi network
+\end{block}
 }
 
 \frame{
@@ -46,27 +58,22 @@ A relatively small group of conspirators, masking their existence via communicat
 % notes-notes-notes
 }
 
-\frame{
-\frametitle{Overview}
-Review a simulation framework we're open-sourcing and demonstrate its application for some simple cases.
-}
-
 
 \frame{
-\frametitle{Underlying Model}
+\frametitle{Underlying General Model}
 \begin{itemize}
-\item a population $P$ +
-\item a covert leader $H$ +
-\item subordinate covert groups $\{C_i\}$ +
-\item stochastic behavior for intra- and inter-group messages
+\item a structured population, $P$,
+\item covert leader(s), $H$,
+\item subordinate covert group(s), $\{C_i\}$,
+\item stochastic behavior model for intra- and inter-group messages
 \end{itemize}
 }
 
 \frame{
-\frametitle{One Implementation}
-For the results discussed here
+\frametitle{One Implementation addressing Salafi Jihadi Network}
+For our simple model of a bomber group in Salafi Jihadi Network
 \begin{description}
-\item[population] small cliques, which are recursively cliqued
+\item[population] many small cliques, which are recursively cliqued into single graph
 \item[covert leader] stochastically added to cliques, outgoing connections to all covert groups
 \item[subordinates] few, medium size cliques with connections between clusters
 \item[communications] simple message content {\em Good} vs. {\em Bad}
