@@ -41,14 +41,43 @@
 {\em a covert network} is a sub graph where interaction information is some combination of unavailable, unreliable, or (mostly) indistinguishable from the enclosing graph structure
 \end{block}
 \begin{block}{\ldots or Operationally}
-A relatively small group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
+A relatively small, organized group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
 
-For this particular talk: Salafi Jihadi network
+For this particular talk: Salafi Jihadi network.
+
+Note: not the bottom-up cells of Sageman, et al's current work
 \end{block}
 }
 
 \frame{
+TODO graphics about Salafi
+}
+
+\frame{
 \frametitle{A General Model}
+\begin{block}{Salient Features}
+\begin{itemize}
+\item isolated, but highly interconnected subordinate groups, and
+\item bridging middle managers,
+\item with some tradecraft,
+\item ``lost'' among myriad public communications
+\end{itemize}
+\end{block}
+}
+
+\frame{
+\frametitle{Our Implementation addressing Salafi Jihadi Network}
+For our simple model of a bomber group in Salafi Jihadi Network
+\begin{description}
+\item[population] many small cliques, which are recursively cliqued into single graph
+\item[covert leader] stochastically added to cliques, outgoing connections to a random member of each of the covert groups
+\item[subordinates] few, medium size cliques with connections between clusters
+\item[communications] simple message content {\em Good} vs. {\em Bad}
+\end{description}
+}
+
+\frame{
+\frametitle{\ldots or Symbolically}
 \begin{itemize}
 \item a structured population, $P$,
 \item covert leader(s), $H$,
@@ -57,36 +86,9 @@ For this particular talk: Salafi Jihadi network
 \end{itemize}
 }
 
-
-\frame{
-\frametitle{Challenges to Detecting Covert Networks in Real Time}
-\begin{itemize}
-\item population vs. covert group communication network initially unknown,
-\item limited resources for monitoring those communications,
-\item thus gathered information unreliable / incomplete,
-\item and risk trade-offs: FPR \&\ TPR vs. action by group
-\end{itemize}
-% notes-notes-notes
-}
-
-\frame{
-\frametitle{One Implementation addressing Salafi Jihadi Network}
-For our simple model of a bomber group in Salafi Jihadi Network
-\begin{description}
-\item[population] many small cliques, which are recursively cliqued into single graph
-\item[covert leader] stochastically added to cliques, outgoing connections to all covert groups
-\item[subordinates] few, medium size cliques with connections between clusters
-\item[communications] simple message content {\em Good} vs. {\em Bad}
-\end{description}
-}
-
-\frame{
-TODO bg figure of example network arrangement + with text overlay noting features
-}
-
 \frame{
 \frametitle{Aside: Sales Pitch}
-Implementation available for remix:
+Scala-based Implementation available for remix:
 \bskip
 \href{https://github.com/pearsonca/scala-commsim}{https://github.com/pearsonca/scala-commsim}
 \bskip
@@ -94,17 +96,65 @@ We're actively moving features from a closed, non-Scala implementation to this r
 }
 
 \frame{
-\frametitle{Detection Algorithms}
+TODO snapshots of various parameter slices
+}
+
+\frame{
+\frametitle{Real Time Challenges to Detection}
 \begin{itemize}
-\item pure content: pick up everyone that has sent and recieved a {\em Bad} message
+\item population vs. covert group communication network initially unknown,
+\item potentially limited resources for monitoring those communications,
+\item thus gathered information unreliable / incomplete,
+\item and risk trade-offs: FPR \&\ TPR vs. action by group
+\end{itemize}
+% notes-notes-notes
+}
+
+\frame{
+\frametitle{Our Model: The Observer}
+An algorithmic description of
+\begin{itemize}
+\item the data limitations (e.g., random suppression or transformation of signals), and
+\item detection strategy(ies)
+\end{itemize}
+}
+
+\frame{
+\frametitle{Some Simple Strategies}
+\begin{itemize}
+\item pure content: pick up everyone that has sent and received a {\em Bad} message
 \item pure structural: pick up highest degree person and all people below median
 \item mixed structural and content
 \end{itemize}
 }
 
 \frame{
+\frametitle{Appropriate Measures?}
+Assume that any given plot has some critical amount of planning-related communication.
+
+But what else?
+\begin{itemize}
+\item true positive rate,
+\item false positive rate,
+\item resource investment
+\end{itemize}
+
+% not obvious how to transform planning-related communication rate, so use a post for the other TPR, FPR
+}
+
+
+\frame{
 \frametitle{Results For These Modes}
 TODO series of plots
+}
+
+\frame{
+\frametitle{Flaws, Extensions, and Outlook}
+\begin{itemize}
+\item limited vocabulary -- add message diversity, require content detection as well,
+\item unsophisticated Observer model and strategies -- add resource model, shifting strategies
+\item background / foreground structural generations -- new generators, fitting to live traffic
+\end{itemize}
 }
 
 % \frame{
