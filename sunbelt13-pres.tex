@@ -44,7 +44,7 @@
 \begin{block}{\ldots or Operationally}
 A relatively small, organized group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
 
-For this particular talk: Salafi Jihadi network.
+For this particular talk: Salafi Jihadi network as described by Sageman, et al.
 
 Note: not that group's more recent focus on {\em leaderless jihad}.
 \end{block}
@@ -57,22 +57,20 @@ Note: not that group's more recent focus on {\em leaderless jihad}.
 \usebackgroundtemplate{}
 
 \frame{
-\frametitle{A General Model}
 \begin{block}{Salient Features}
 \begin{itemize}
-\item isolated, but highly interconnected subordinate groups, and
+\item highly interconnected subordinate groups, and
 \item bridging middle managers,
-\item with some tradecraft,
-\item ``lost'' among myriad public communications
+\item communications masked with some tradecraft,
+\item missing from picture: vast background population
 \end{itemize}
 \end{block}
 }
 
 \frame{
-\frametitle{Our Implementation addressing Salafi Jihadi Network}
-For our simple model of a bomber group in Salafi Jihadi Network
+\frametitle{Simple Implementation addressing a Salafi Jihadi-like Network}
 \begin{description}
-\item[population] many small cliques, which are recursively cliqued into single graph
+\item[background population] many small cliques, which are recursively cliqued into single graph
 \item[covert leader] stochastically added to cliques, outgoing connections to a random member of each of the covert groups
 \item[subordinates] few, medium size cliques with connections between clusters
 \item[communications] simple message content {\em Good} vs. {\em Bad}
@@ -83,9 +81,10 @@ For our simple model of a bomber group in Salafi Jihadi Network
 \frametitle{\ldots or Symbolically}
 \begin{itemize}
 \item a structured population, $P$,
-\item covert leader(s), $H$,
-\item subordinate covert group(s), $\{C_i\}$,
-\item stochastic behavior model for intra- and inter-group messages
+\item covert leader, $H$,
+\item subordinate covert groups, $\{C_i\}$,
+\item stochastic behavior model for intra- and inter-group messages,
+\item drawn from a set vocabulary, $V$
 \end{itemize}
 }
 
@@ -158,6 +157,9 @@ Also, this presentation:
 }
 \usebackgroundtemplate{}
 
+\frame{
+\frametitle{Steady State, Structural View vs. Real Time}
+}
 
 \frame{
 \frametitle{Real Time Challenges to Detection}
