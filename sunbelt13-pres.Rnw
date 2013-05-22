@@ -88,16 +88,73 @@ For our simple model of a bomber group in Salafi Jihadi Network
 
 \frame{
 \frametitle{Aside: Sales Pitch}
-Scala-based Implementation available for remix:
+Scala-based Implementation available for review/remix:
 \bskip
 \href{https://github.com/pearsonca/scala-commsim}{https://github.com/pearsonca/scala-commsim}
 \bskip
-We're actively moving features from a closed, non-Scala implementation to this repository.  Feel free to request changes, point out bugs, etc.
+Actively moving from closed, non-Scala implementation to that repository.  Please request changes, point out bugs, etc.
+\bskip
+Also, this presentation:
+\bskip
+\href{https://github.com/pearsonca/sunbelt13-presentation}{https://github.com/pearsonca/sunbelt13-presentation}
 }
 
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_1_500.png}}
 \frame{
-TODO snapshots of various parameter slices
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+3 clique, 1\%\ remix
+\end{column}
+\end{columns}
 }
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_10_500.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+3 clique, 10\%\ remix
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_30_500.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+3 clique, 30\%\ remix
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_1_500.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+4 clique, 1\%\ remix
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_10_500.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+4 clique, 10\%\ remix
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_30_500.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+4 clique, 30\%\ remix
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{}
+
 
 \frame{
 \frametitle{Real Time Challenges to Detection}
