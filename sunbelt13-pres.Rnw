@@ -45,13 +45,15 @@ A relatively small, organized group of conspirators, masking their existence via
 
 For this particular talk: Salafi Jihadi network.
 
-Note: not the bottom-up cells of Sageman, et al's current work
+Note: not that group's more recent focus on {\em leaderless jihad}.
 \end{block}
 }
 
+\usebackgroundtemplate{
+\vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{sageman_crop.pdf}\hfil}\vfil} }
 \frame{
-TODO graphics about Salafi
 }
+\usebackgroundtemplate{}
 
 \frame{
 \frametitle{A General Model}
