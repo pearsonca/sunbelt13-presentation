@@ -15,30 +15,31 @@
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 \title{Detection of Small Covert Networks Embedded in Large Networks}
-\author{Carl~A.~B.~Pearson \inst{1} \and Burton H. Singer \inst{1} \and Edo Airoldi \inst{2}}
-\institute{\inst{1}Emerging Pathogens Institute, University of Florida \and \inst{2}Harvard University
-}
+\author{Carl~A.~B.~Pearson \and Burton H. Singer}
+\institute{Emerging Pathogens Institute, University of Florida}
 \frame{\titlepage}
-
+\usebackgroundtemplate{
+\vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=0.7\paperheight,height=0.7\paperheight]{2012army.png}\hfil}\vfil} }
 \frame{
-\frametitle{TODO FUNDING INFORMATION}
+\frametitle{Brought to you by Award \#W911NF-11-1-0036Z}
 }
+\usebackgroundtemplate{}
 
 \frame{
 \frametitle{Overview}
 \begin{itemize}
 \item Definitions,
 \item A Model to Reflect Those,
-\item Implementation for a Particular Case: Salafi Jihadi Network,
-\item Detecting Groups in this Model,
-\item Some Detection Results for that Implementation, and
+\item A Particular Implementation: Salafi Jihadi Network,
+\item Strategies for Detecting Groups,
+\item Some Results, and
 \item Flaws, Extensions, and Outlook
 \end{itemize}
 }
 
 \frame{
 \begin{block}{What is {\em Covert}?}
-{\em a covert network} is a sub graph where interaction information is some combination of unavailable, unreliable, or (mostly) indistinguishable from the enclosing graph structure
+{\em a covert network} is a sub graph where edge information is unavailable, unreliable, or indistinguishable from whole graph structure
 \end{block}
 \begin{block}{\ldots or Operationally}
 A relatively small, organized group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
@@ -145,6 +146,7 @@ Also, this presentation:
 \end{column}
 \end{columns}
 }
+
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_30_500.png}}
 \frame{
 \begin{columns}[t]
@@ -204,10 +206,38 @@ But what else?
 }
 
 
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_1_500_s.png}}
 \frame{
-\frametitle{Results For These Modes}
-TODO series of plots
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+structural only
+\end{column}
+\end{columns}
 }
+\usebackgroundtemplate{}
+
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_1_500_c.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+content only
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{}
+
+\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_1_500_sandc.png}}
+\frame{
+\begin{columns}[t]
+\begin{column}{0.7\textwidth}\end{column}
+\begin{column}{0.3\textwidth}
+structure + content
+\end{column}
+\end{columns}
+}
+\usebackgroundtemplate{}
 
 \frame{
 \frametitle{Flaws, Extensions, and Outlook}
