@@ -108,45 +108,50 @@ Also, this presentation:
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_1_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-3 clique, 1\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+3 clique,
+1\%\ remix
 \end{column}
 \end{columns}
 }
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_10_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-3 clique, 10\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+3 clique,
+10\%\ remix
 \end{column}
 \end{columns}
 }
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{3_30_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-3 clique, 30\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+3 clique,
+30\%\ remix
 \end{column}
 \end{columns}
 }
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_1_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-4 clique, 1\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+4 clique,
+1\%\ remix
 \end{column}
 \end{columns}
 }
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_10_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-4 clique, 10\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+4 clique,
+10\%\ remix
 \end{column}
 \end{columns}
 }
@@ -154,9 +159,10 @@ Also, this presentation:
 \usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{4_30_500.png}}
 \frame{
 \begin{columns}[t]
-\begin{column}{0.7\textwidth}\end{column}
-\begin{column}{0.3\textwidth}
-4 clique, 30\%\ remix
+\begin{column}{0.8\textwidth}\end{column}
+\begin{column}{0.2\textwidth}
+4 clique,
+30\%\ remix
 \end{column}
 \end{columns}
 }
@@ -191,8 +197,8 @@ An algorithmic description of
 \frametitle{Some Simple Strategies}
 \begin{itemize}
 \item pure content: pick up everyone that has sent and received a {\em Bad} message
-\item pure structural: pick up highest degree person and all people below median
-\item mixed structural and content
+\item pure structural: pick up high / low degree individuals
+\item mixed structural / content
 \end{itemize}
 }
 
@@ -202,9 +208,9 @@ Assume that any given plot has some critical amount of planning-related communic
 
 But what else?
 \begin{itemize}
-\item true positive rate,
-\item false positive rate,
-\item resource investment
+\item true positive rate (hub + subordinates ID'd / total),
+\item false positive rate (background ID'd / background total),
+\item resource investment (not covered)
 \end{itemize}
 
 % not obvious how to transform planning-related communication rate, so use a post for the other TPR, FPR
