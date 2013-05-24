@@ -40,10 +40,10 @@
 
 \frame{
 \begin{block}{What is {\em Covert}?}
-{\em a covert network} is a sub graph where edge information is unavailable, unreliable, or indistinguishable from whole graph structure
+{\em a covert network} is a sub graph where edge information is unavailable, unreliable, or indistinguishable from whole graph structure - but that sub graph is informative
 \end{block}
 \begin{block}{\ldots or Operationally}
-A relatively small, organized group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background.
+A relatively small, organized group of conspirators, masking their existence via communication discipline and taking advantage of a noisy background, who are preparing some event.
 
 For this particular talk: Salafi Jihadi network as described by Sageman, et al\cite{qin2005analyzing}.
 
@@ -53,8 +53,7 @@ Note: not that group's more recent focus on {\em leaderless jihad}.
 
 \usebackgroundtemplate{
 \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{sageman_crop.pdf}\hfil}\vfil} }
-\frame{
-}
+\frame{}
 \usebackgroundtemplate{}
 
 \frame{
@@ -180,7 +179,7 @@ Also, this presentation:
 }
 
 \frame{
-\frametitle{Our Model: The Observer}
+\frametitle{Detection Model: The Observer}
 An algorithmic description of
 \begin{itemize}
 \item the data limitations (e.g., random suppression or transformation of signals), and
